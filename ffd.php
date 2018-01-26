@@ -40,4 +40,12 @@ if(!function_exists('ffd_remove_bio_box')){
 add_action('wp_head','user_profile_subject_start');
 //add_action('admin_footer-profile.php','user_profile_subject_end');
 add_action('wp_footer','user_profile_subject_end');
+
+// SCRIPTS
+////
+add_action( 'wp_enqueue_scripts', 'ffd_scripts',100 );
+function ffd_scripts() {
+	// dequeue script from PMPro Variable Price plugin
+	wp_dequeue_script('pmprovp');
+}
 ?>
