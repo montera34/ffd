@@ -64,7 +64,7 @@ function ffd_scripts() {
 ////
 add_action('admin_menu', 'ffd_register_options_page');
 function ffd_register_options_page() {
-	add_menu_page('FFD extra configurations','FFD extra config','activate_plugins','ffd/ffd.php','ffd_options_page', 'dashicons-marker');
+	add_menu_page('FFD extra configurations','FFD extra config','activate_plugins','ffd.php','ffd_options_page', 'dashicons-marker');
 }
 
 // REGISTER PLUGIN SETTINGS
@@ -78,7 +78,7 @@ function ffd_register_settings() {
 
 // CALLBACK FUNCTIONS
 function ffd_section_multipilote_callback() {
-	echo __('Multipilote membership prices','ffd');
+	echo __('<p>This price settings are applied to multipilote membership checkout.</p><p>To make this settings works, you must include the following shortcode in the begining of checkout page content: <code>[fdd-multipilote]</code></p>','ffd');
 }
 
 function ffd_multipilote_base_price_callback() {
