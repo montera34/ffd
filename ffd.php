@@ -45,8 +45,9 @@ add_action('wp_footer','fdd_user_profile_end');
 
 // SCRIPTS
 ////
-add_action( 'wp_enqueue_scripts', 'ffd_scripts',100 );
+//add_action( 'wp_enqueue_scripts', 'ffd_scripts',100 );
 function ffd_scripts() {
+	global $v;
 	// dequeue script from PMPro Variable Price plugin
 	wp_dequeue_script('pmprovp');
 	wp_enqueue_script(
@@ -58,4 +59,74 @@ function ffd_scripts() {
 	);
 }
 
+
+// ADD PLUGIN OPTION SUBPAGE TO DASHBOARD
+////
+add_action('admin_menu', 'ffd_register_options_page');
+function ffd_register_options_page() {
+	add_menu_page('FFD extra configurations','FFD extra config','activate_plugins','ffd/ffd.php','ffd_options_page', 'dashicons-marker');
+}
+
+// REGISTER PLUGIN SETTINGS
+add_action( 'admin_init', 'ffd_register_settings' );
+function ffd_register_settings() {
+	register_setting( 'ffd_multipilote_group', 'ffd_multipilote' );
+	add_settings_section( 'ffd-section-multipilote', __('Multipilote prices','ffd'), 'ffd_section_multipilote_callback', 'multipilote' );
+	add_settings_field( 'base_price', __('Base price','ffd'), 'ffd_multipilote_base_price_callback', 'multipilote', 'ffd-section-multipilote' );
+	add_settings_field( 'reduced_price', __('Reduced price','ffd'), 'ffd_multipilote_reduced_price_callback', 'multipilote', 'ffd-section-multipilote' );
+}
+
+// CALLBACK FUNCTIONS
+function ffd_section_multipilote_callback() {
+	echo __('Multipilote membership prices','ffd');
+}
+
+function ffd_multipilote_base_price_callback() {
+	$settings = (array) get_option( 'ffd_multipilote' );
+	$field = esc_attr( $settings['base_price'] );
+	echo "<input type='text' name='ffd_multipilote[base_price]' value='$field' /> €";
+}
+
+function ffd_multipilote_reduced_price_callback() {
+	$settings = (array) get_option( 'ffd_multipilote' );
+	$field = esc_attr( $settings['reduced_price'] );
+	echo "<input type='text' name='ffd_multipilote[reduced_price]' value='$field' /> €";
+}
+
+// GENERATE OUTPUT
+function ffd_options_page() { ?>
+	<div class="wrap">
+	<h2><?php _e('FFD extra configurations','ffd'); ?></h2>
+		<form method="post" action="options.php">
+			<?php settings_fields( 'ffd_multipilote_group' ); ?>
+			<?php do_settings_sections( 'multipilote' ); ?>
+			<?php submit_button(); ?>
+		</form>
+	</div>
+<?php
+}
+
+// VARIABLE PRICE SELECT SHORTCODE
+////
+add_shortcode('ffd_multipilote', 'ffd_multipilote_shortcode');
+function ffd_multipilote_shortcode() {
+	ffd_multipilote_select();
+
+}
+
+function ffd_multipilote_select() {
+	ffd_scripts();
+	$settings = (array) get_option( 'ffd_multipilote' );
+	$base = esc_attr( $settings['base_price'] );
+	$reduced = esc_attr( $settings['reduced_price'] );
+
+	$multipilote_options = '
+		<script>
+		var ffdBasePrice = '.$base.';
+		var ffdReducedPrice = '.$reduced.';
+		</script>
+	';
+	echo $multipilote_options;
+
+}
 ?>
