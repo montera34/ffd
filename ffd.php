@@ -8,6 +8,8 @@ Author URI: https://montera34.com
 License: GPLv3
  */
 
+$v = '0.1';
+
 // USER CAPABILITIES
 ////
 
@@ -33,13 +35,13 @@ if(!function_exists('ffd_remove_bio_box')){
 		$buffer = preg_replace('/<tr class=\"tml-user-description-wrap\"[\s\S]*?<\/tr>/','',$buffer,1);
 		return $buffer;
 	}
-	function user_profile_subject_start(){ ob_start('ffd_remove_bio_box'); }
-	function user_profile_subject_end(){ ob_end_flush(); }
+	function ffd_user_profile_start(){ ob_start('ffd_remove_bio_box'); }
+	function ffd_user_profile_end(){ ob_end_flush(); }
 }
 //add_action('admin_head-profile.php','user_profile_subject_start');
-add_action('wp_head','user_profile_subject_start');
+add_action('wp_head','ffd_user_profile_start');
 //add_action('admin_footer-profile.php','user_profile_subject_end');
-add_action('wp_footer','user_profile_subject_end');
+add_action('wp_footer','fdd_user_profile_end');
 
 // SCRIPTS
 ////
@@ -47,5 +49,13 @@ add_action( 'wp_enqueue_scripts', 'ffd_scripts',100 );
 function ffd_scripts() {
 	// dequeue script from PMPro Variable Price plugin
 	wp_dequeue_script('pmprovp');
+	wp_enqueue_script(
+		'ffd-js',
+		plugins_url( 'js/ffd.js' , __FILE__),
+		array('jquery'),
+		$v,
+		TRUE
+	);
 }
+
 ?>
