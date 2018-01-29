@@ -129,4 +129,369 @@ function ffd_multipilote_select() {
 	echo $multipilote_options;
 
 }
+
+// SIGN UP FORM
+////
+add_action( 'init', 'ffd_signup_form_extra_fields' );
+function ffd_signup_form_extra_fields() {
+	//don't break if Register Helper is not loaded
+	if( ! function_exists ( 'pmprorh_add_registration_field' ) ) {
+		return false;
+	}
+	$fields = array();
+
+	$fields[] = new PMProRH_Field(
+		'_user_company_tit',
+		'readonly',
+		array (
+			'label' => __('Company','ffd'),
+			'level' => array(1,3,4,5,6),
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_company',
+		'text',
+		array (
+			'name' => '_user_company',
+			'label' => __('Company name','ffd'),
+			'level' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_siret',
+		'text',
+		array (
+			'name' => '_user_siret',
+			'label' => __('SIRET number','ffd'),
+			'level' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_address',
+		'textarea',
+		array (
+			'name' => '_user_address',
+			'label' => __('Address','ffd'),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_zip_code',
+		'text',
+		array (
+			'name' => '_user_zip_code',
+			'label' => __('ZIP Code','ffd'),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_city',
+		'text',
+		array (
+			'name' => '_user_city',
+			'label' => __('City','ffd'),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_phone',
+		'text',
+		array (
+			'name' => '_user_phone',
+			'label' => __('Phone','ffd'),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_legal_contact',
+		'readonly',
+		array (
+			'label' => __('Legal contact','ffd'),
+			'level' => array(1,3,4,5,6),
+			'divclass' => 'signup_section_head',
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_legal_contact_lastname',
+		'text',
+		array (
+			'name' => '_user_legal_contact_lastname',
+			'label' => __('Last name','ffd'),
+			'level' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_legal_contact_firstname',
+		'text',
+		array (
+			'name' => '_user_legal_contact_firstname',
+			'label' => __('First name','ffd'),
+			'level' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_legal_contact_occupation',
+		'text',
+		array (
+			'name' => '_user_legal_contact_occupation',
+			'label' => __('Occupation','ffd'),
+			'level' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_legal_contact_phone',
+		'text',
+		array (
+			'name' => '_user_legal_contact_phone',
+			'label' => __('Phone','ffd'),
+			'level' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields[] = new PMProRH_Field(
+		'_user_legal_contact_mail',
+		'text',
+		array (
+			'name' => '_user_legal_contact_mail',
+			'label' => __('Email','ffd'),
+			'level' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+
+	for ($i = 1; $i <= 2; $i++ ) {
+		$next = $i + 1;
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i,
+			'readonly',
+			array (
+				'label' => __('Pilot '.$i,'ffd'),
+				'level' => array(1,3,4,5,6),
+				'divclass' => 'signup_section_head',
+				'profile' => true
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_photo',
+			'file',
+			array (
+				'name' => '_user_pilot_'.$i.'_photo',
+				'label' => __('Photo','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'Profile photo, ID document type. This photo will be used for your membership card.'
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_lastname',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_lastname',
+				'label' => __('Last name','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_firstname',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_firstname',
+				'label' => __('First name','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_ed',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_ed',
+				'label' => __('ED number','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_theory',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_theory',
+				'label' => __('Theoretical number (ULM, PPL...)','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true
+			)
+		);
+		if ( $i == 2 ) {
+			$fields[] = new PMProRH_Field(
+				'_user_pilot_'.$i.'_add',
+				'checkbox',
+					array (
+						'name' => '_user_pilot_'.$i.'_add',
+						'label' => __('Add pilot '.$next,'ffd'),
+						'level' => array(1,3,4,5,6),
+						'memberslistcsv' => false,
+						'profile' => true
+					)
+			);
+		}
+	} // end for
+
+	for($i=3; $i <= 50; $i++) {
+		$prev = $i -1;
+		$next = $i + 1;
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i,
+			'readonly',
+			array (
+				'label' => __('Pilot '.$i,'ffd'),
+				'level' => array(1,3,4,5,6),
+				'divclass' => 'signup_section_head',
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_photo',
+			'file',
+			array (
+				'name' => '_user_pilot_'.$i.'_photo',
+				'label' => __('Photo','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'Profile photo, ID document type. This photo will be used for your membership card.',
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+	
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_lastname',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_lastname',
+				'label' => __('Last name','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+	
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_firstname',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_firstname',
+				'label' => __('First name','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+	
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_ed',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_ed',
+				'label' => __('ED number','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+	
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_theory',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_theory',
+				'label' => __('Theoretical number (ULM, PPL...)','ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+	
+			)
+		);
+		$fields[] = new PMProRH_Field(
+			'_user_pilot_'.$i.'_add',
+			'checkbox',
+			array (
+				'name' => '_user_pilot_'.$i.'_add',
+				'label' => __('Add pilot '.$next,'ffd'),
+				'level' => array(1,3,4,5,6),
+				'memberslistcsv' => false,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+	
+			)
+		);
+	} // end for
+
+	foreach ( $fields as $f ) {
+		pmprorh_add_registration_field('after_email',$f);
+	}
+}
 ?>
