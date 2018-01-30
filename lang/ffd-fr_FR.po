@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-01-30 15:51+0100\n"
+"PO-Revision-Date: 2018-01-30 16:03+0100\n"
+"Last-Translator: Alfonso Sánchez Uzábal <skotperez@voragine.net>\n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: lang\n"
+"X-Poedit-SearchPathExcluded-1: .git\n"
+
+#: ffd.php:78
+msgid "Multipilote prices"
+msgstr "Prix pour multipilotes"
+
+#: ffd.php:79
+msgid "Base price"
+msgstr "Prix de base"
+
+#: ffd.php:80
+msgid "Reduced price"
+msgstr "Prix reduit"
+
+#: ffd.php:85
+msgid ""
+"<p>This price settings are applied to multipilote membership checkout.</"
+"p><p>To make this settings works, you must include the following shortcode "
+"in the begining of checkout page content: <code>[fdd-multipilote]</code></p>"
+msgstr ""
+"<p>Ces réglages seront appliqués dans la page de paiement d'adhésion des "
+"entreprises multipilote.</p><p>Pour faire fonctionner ces réglages, il est "
+"necessaire de incluire le shortcode suivant tout au debut du contenu de la "
+"page de paiement : <code>[fdd-multipilote]</code></p>"
+
+#: ffd.php:103
+msgid "FFD extra configurations"
+msgstr "Réglages additionnels pour le site de la FFD"
+
+#: ffd.php:153
+msgid "Company"
+msgstr "Entreprise"
+
+#: ffd.php:163
+msgid "Company name"
+msgstr "Nom de la entreprise"
+
+#: ffd.php:174
+msgid "SIRET number"
+msgstr "Numéro SIRET"
+
+#: ffd.php:187
+msgid "Address"
+msgstr "Adresse"
+
+#: ffd.php:197
+msgid "ZIP Code"
+msgstr "Code postal"
+
+#: ffd.php:207
+msgid "City"
+msgstr "Ville"
+
+#: ffd.php:217 ffd.php:284
+msgid "Phone"
+msgstr "Téléphone"
+
+#: ffd.php:227 ffd.php:319 ffd.php:409
+msgid "Photo"
+msgstr "Photo"
+
+#: ffd.php:231 ffd.php:323 ffd.php:413
+msgid ""
+"Profile photo, ID document type. This photo will be used for your membership "
+"card."
+msgstr "Photo de type identité pour l'édition des cartes de membres"
+
+#: ffd.php:240
+msgid "Legal contact"
+msgstr "Représentant"
+
+#: ffd.php:251 ffd.php:331 ffd.php:428
+msgid "Last name"
+msgstr "Nom"
+
+#: ffd.php:262 ffd.php:342 ffd.php:446
+msgid "First name"
+msgstr "Prénom"
+
+#: ffd.php:273
+msgid "Occupation"
+msgstr "Qualité"
+
+#: ffd.php:295
+msgid "Email"
+msgstr "Èmail"
+
+#: ffd.php:308 ffd.php:392
+msgid "Pilot "
+msgstr "Télépilote"
+
+#: ffd.php:353 ffd.php:464
+msgid "ED number"
+msgstr "Numéro ED"
+
+#: ffd.php:364 ffd.php:482
+msgid "Theoretical number (ULM, PPL...)"
+msgstr "Numéro théorique du télépilote (ULM, PPL ...)"
+
+#: ffd.php:376 ffd.php:500
+msgid "Add pilot "
+msgstr ""
