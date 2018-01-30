@@ -140,12 +140,14 @@ function ffd_signup_form_extra_fields() {
 	}
 	$fields = array();
 
+	// company fields for
+	// individual pilot, multipilot company, big group, learning org, others
 	$fields[] = new PMProRH_Field(
 		'_user_company_tit',
 		'readonly',
 		array (
 			'label' => __('Company','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'profile' => true
 		)
 	);
@@ -155,7 +157,7 @@ function ffd_signup_form_extra_fields() {
 		array (
 			'name' => '_user_company',
 			'label' => __('Company name','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
@@ -166,7 +168,7 @@ function ffd_signup_form_extra_fields() {
 		array (
 			'name' => '_user_siret',
 			'label' => __('SIRET number','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
@@ -216,7 +218,7 @@ function ffd_signup_form_extra_fields() {
 		'readonly',
 		array (
 			'label' => __('Legal contact','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'divclass' => 'signup_section_head',
 			'profile' => true
 		)
@@ -227,7 +229,7 @@ function ffd_signup_form_extra_fields() {
 		array (
 			'name' => '_user_legal_contact_lastname',
 			'label' => __('Last name','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
@@ -238,7 +240,7 @@ function ffd_signup_form_extra_fields() {
 		array (
 			'name' => '_user_legal_contact_firstname',
 			'label' => __('First name','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
@@ -249,7 +251,7 @@ function ffd_signup_form_extra_fields() {
 		array (
 			'name' => '_user_legal_contact_occupation',
 			'label' => __('Occupation','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
@@ -260,7 +262,7 @@ function ffd_signup_form_extra_fields() {
 		array (
 			'name' => '_user_legal_contact_phone',
 			'label' => __('Phone','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
@@ -271,7 +273,7 @@ function ffd_signup_form_extra_fields() {
 		array (
 			'name' => '_user_legal_contact_mail',
 			'label' => __('Email','ffd'),
-			'level' => array(1,3,4,5,6),
+			'levels' => array(1,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
@@ -284,7 +286,7 @@ function ffd_signup_form_extra_fields() {
 			'readonly',
 			array (
 				'label' => __('Pilot '.$i,'ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'divclass' => 'signup_section_head',
 				'profile' => true
 			)
@@ -295,7 +297,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_photo',
 				'label' => __('Photo','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'Profile photo, ID document type. This photo will be used for your membership card.'
@@ -307,7 +309,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_lastname',
 				'label' => __('Last name','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true
 			)
@@ -318,7 +320,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_firstname',
 				'label' => __('First name','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true
 			)
@@ -329,7 +331,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_ed',
 				'label' => __('ED number','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true
 			)
@@ -340,7 +342,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_theory',
 				'label' => __('Theoretical number (ULM, PPL...)','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true
 			)
@@ -352,7 +354,7 @@ function ffd_signup_form_extra_fields() {
 					array (
 						'name' => '_user_pilot_'.$i.'_add',
 						'label' => __('Add pilot '.$next,'ffd'),
-						'level' => array(1,3,4,5,6),
+						'levels' => array(1,3,4,5,6),
 						'memberslistcsv' => false,
 						'profile' => true
 					)
@@ -368,7 +370,7 @@ function ffd_signup_form_extra_fields() {
 			'readonly',
 			array (
 				'label' => __('Pilot '.$i,'ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'divclass' => 'signup_section_head',
 				'profile' => true,
 				'depends' => array(
@@ -385,7 +387,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_photo',
 				'label' => __('Photo','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'Profile photo, ID document type. This photo will be used for your membership card.',
@@ -404,7 +406,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_lastname',
 				'label' => __('Last name','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -422,7 +424,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_firstname',
 				'label' => __('First name','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -440,7 +442,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_ed',
 				'label' => __('ED number','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -458,7 +460,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_theory',
 				'label' => __('Theoretical number (ULM, PPL...)','ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -476,7 +478,7 @@ function ffd_signup_form_extra_fields() {
 			array (
 				'name' => '_user_pilot_'.$i.'_add',
 				'label' => __('Add pilot '.$next,'ffd'),
-				'level' => array(1,3,4,5,6),
+				'levels' => array(1,3,4,5,6),
 				'memberslistcsv' => false,
 				'profile' => true,
 				'depends' => array(
