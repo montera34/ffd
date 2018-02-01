@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-01-31 15:52+0100\n"
-"PO-Revision-Date: 2018-01-31 15:52+0100\n"
+"POT-Creation-Date: 2018-02-01 07:44+0100\n"
+"PO-Revision-Date: 2018-02-01 07:46+0100\n"
 "Last-Translator: Alfonso Sánchez Uzábal <skotperez@voragine.net>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -17,19 +17,19 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: lang\n"
 "X-Poedit-SearchPathExcluded-1: .git\n"
 
-#: ffd.php:78
+#: ffd.php:86
 msgid "Multipilote prices"
 msgstr "Prix pour multipilotes"
 
-#: ffd.php:79
+#: ffd.php:87
 msgid "Base price"
 msgstr "Prix de base"
 
-#: ffd.php:80
+#: ffd.php:88
 msgid "Reduced price"
 msgstr "Prix reduit"
 
-#: ffd.php:85
+#: ffd.php:93
 msgid ""
 "<p>This price settings are applied to multipilote membership checkout.</"
 "p><p>To make this settings works, you must include the following shortcode "
@@ -40,99 +40,103 @@ msgstr ""
 "necessaire de incluire le shortcode suivant tout au debut du contenu de la "
 "page de paiement : <code>[fdd-multipilote]</code></p>"
 
-#: ffd.php:103
+#: ffd.php:111
 msgid "FFD extra configurations"
 msgstr "Réglages additionnels pour le site de la FFD"
 
-#: ffd.php:155
+#: ffd.php:163
 msgid "Website"
 msgstr "Site web"
 
-#: ffd.php:168
+#: ffd.php:176
 msgid "Company"
 msgstr "Entreprise"
 
-#: ffd.php:178
+#: ffd.php:186
 msgid "Company name"
 msgstr "Nom de la entreprise"
 
-#: ffd.php:189
+#: ffd.php:197
 msgid "SIRET number"
 msgstr "Numéro SIRET"
 
-#: ffd.php:202 ffd.php:301 ffd.php:380 ffd.php:480 ffd.php:640
+#: ffd.php:210 ffd.php:315 ffd.php:406 ffd.php:506 ffd.php:666
 msgid "First name"
 msgstr "Prénom"
 
-#: ffd.php:213 ffd.php:290 ffd.php:369 ffd.php:463 ffd.php:623
+#: ffd.php:221 ffd.php:304 ffd.php:394 ffd.php:489 ffd.php:649
 msgid "Last name"
 msgstr "Nom"
 
-#: ffd.php:226
+#: ffd.php:234
 msgid "Address"
 msgstr "Adresse"
 
-#: ffd.php:236
+#: ffd.php:245
 msgid "ZIP Code"
 msgstr "Code postal"
 
-#: ffd.php:246
+#: ffd.php:256
 msgid "City"
 msgstr "Ville"
 
-#: ffd.php:256 ffd.php:323 ffd.php:497 ffd.php:657
+#: ffd.php:267 ffd.php:337 ffd.php:523 ffd.php:683
 msgid "Phone"
 msgstr "Téléphone"
 
-#: ffd.php:266 ffd.php:357 ffd.php:445 ffd.php:605
+#: ffd.php:280 ffd.php:381 ffd.php:471 ffd.php:631
 msgid "Photo"
 msgstr "Photo"
 
-#: ffd.php:270 ffd.php:361 ffd.php:449 ffd.php:609
+#: ffd.php:284 ffd.php:385 ffd.php:475 ffd.php:635
 msgid ""
 "Profile photo, ID document type. This photo will be used for your membership "
 "card."
 msgstr "Photo de type identité pour l'édition des cartes de membres"
 
-#: ffd.php:279
+#: ffd.php:293
 msgid "Legal contact"
 msgstr "Représentant"
 
-#: ffd.php:312
+#: ffd.php:326
 msgid "Occupation"
 msgstr "Qualité"
 
-#: ffd.php:334 ffd.php:514 ffd.php:674
+#: ffd.php:348 ffd.php:540 ffd.php:700
 msgid "Email"
 msgstr "Èmail"
 
-#: ffd.php:346 ffd.php:423
+#: ffd.php:360 ffd.php:449
 msgid "Pilot"
 msgstr "Pilote"
 
-#: ffd.php:391 ffd.php:531 ffd.php:691
+#: ffd.php:371
+msgid "Copy legal contact informations for pilot"
+msgstr "Utiliser les coordonnées du représentant pour le pilote"
+
+#: ffd.php:417 ffd.php:557 ffd.php:717
 msgid "ED number"
 msgstr "Numéro ED"
 
-#: ffd.php:402 ffd.php:548 ffd.php:708
+#: ffd.php:428 ffd.php:574 ffd.php:734
 msgid "Theoretical number (ULM, PPL...)"
 msgstr "Numéro théorique du télépilote (ULM, PPL ...)"
 
-#: ffd.php:415
+#: ffd.php:441
 msgid "Add pilots data"
 msgstr "Ajouter coordonnés des pilotes"
 
-#: ffd.php:423 ffd.php:588
+#: ffd.php:449 ffd.php:614
 #, php-format
 msgid "Pilot %s"
 msgstr "Pilote %s"
 
-#: ffd.php:566
+#: ffd.php:592
 #, php-format
 msgid "Add pilot %s"
 msgstr "Ajouter pilote %s"
 
-#: ffd.php:725
+#: ffd.php:751
 msgid "Add pilot "
 msgstr "Ajouter un pilote "
 
