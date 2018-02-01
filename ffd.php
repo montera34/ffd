@@ -47,6 +47,14 @@ add_action('wp_head','ffd_user_profile_start');
 //add_action('admin_footer-profile.php','user_profile_subject_end');
 add_action('wp_footer','fdd_user_profile_end');
 
+// remove contact methods
+add_filter( 'user_contactmethods', 'ffd_user_profile_contact_methods' );
+function ffd_user_profile_contact_methods( $user_contactmethods ) {
+    unset( $user_contactmethods['aim'] );
+    unset( $user_contactmethods['yim'] );
+    unset( $user_contactmethods['jabber'] );
+}
+
 // SCRIPTS
 ////
 //add_action( 'wp_enqueue_scripts', 'ffd_scripts',100 );
@@ -142,11 +150,26 @@ function ffd_signup_form_extra_fields() {
 	if( ! function_exists ( 'pmprorh_add_registration_field' ) ) {
 		return false;
 	}
-	$fields = array();
+	$fields_after_email = array();
+	$fields_checkout_boxes = array();
+
+	// web site for
+	// individual pilot, multipilot company, others
+	$fields_after_email[] = new PMProRH_Field( // web site
+		'url',
+		'text',
+		array (
+			'name' => 'url',
+			'label' => __('Website','ffd'),
+			'levels' => array(1,3,5,6),
+			'memberslistcsv' => true,
+			'profile' => false
+		)
+	);
 
 	// company fields for
 	// individual pilot, multipilot company, big group, learning org, others
-	$fields[] = new PMProRH_Field( // company section tit
+	$fields_checkout_boxes[] = new PMProRH_Field( // company section tit
 		'_user_company_tit',
 		'readonly',
 		array (
@@ -155,7 +178,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // company name
+	$fields_checkout_boxes[] = new PMProRH_Field( // company name
 		'_user_company',
 		'text',
 		array (
@@ -166,7 +189,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // company siret number
+	$fields_checkout_boxes[] = new PMProRH_Field( // company siret number
 		'_user_siret',
 		'text',
 		array (
@@ -177,55 +200,85 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
+	// first and last name fields for
+	// individual pilot
+	$fields_checkout_boxes[] = new PMProRH_Field( // first name
+		'first_name',
+		'text',
+		array (
+			'name' => 'first_name',
+			'label' => __('First name','ffd'),
+			'levels' => array(2),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // last name
+		'last_name',
+		'text',
+		array (
+			'name' => 'last_name',
+			'label' => __('Last name','ffd'),
+			'levels' => array(2),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
 	// contact fields for
 	// all member types
-	$fields[] = new PMProRH_Field( // address
+	$fields_checkout_boxes[] = new PMProRH_Field( // address
 		'_user_address',
 		'textarea',
 		array (
 			'name' => '_user_address',
 			'label' => __('Address','ffd'),
+			'levels' => array(1,2,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // zip code
+	$fields_checkout_boxes[] = new PMProRH_Field( // zip code
 		'_user_zip_code',
 		'text',
 		array (
 			'name' => '_user_zip_code',
 			'label' => __('ZIP Code','ffd'),
+			'levels' => array(1,2,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // city
+	$fields_checkout_boxes[] = new PMProRH_Field( // city
 		'_user_city',
 		'text',
 		array (
 			'name' => '_user_city',
 			'label' => __('City','ffd'),
+			'levels' => array(1,2,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // phone
+	$fields_checkout_boxes[] = new PMProRH_Field( // phone
 		'_user_phone',
 		'text',
 		array (
 			'name' => '_user_phone',
 			'label' => __('Phone','ffd'),
+			'levels' => array(1,2,3,4,5,6),
 			'memberslistcsv' => true,
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // photo
+	// photo field
+	// individual pilot
+	$fields_checkout_boxes[] = new PMProRH_Field( // photo
 		'_user_photo',
 		'file',
 		array (
 			'name' => '_user_photo',
 			'label' => __('Photo','ffd'),
-			'levels' => array(1)
+			'levels' => array(2),
 			'memberslistcsv' => true,
 			'profile' => true,
 			'hint' => __('Profile photo, ID document type. This photo will be used for your membership card.','ffd')
@@ -233,7 +286,7 @@ function ffd_signup_form_extra_fields() {
 	);
 	// legal contact fields
 	// for individual pilot, multipilot company, big group, learning org, others
-	$fields[] = new PMProRH_Field( // legal contact section tit
+	$fields_checkout_boxes[] = new PMProRH_Field( // legal contact section tit
 		'_user_legal_contact',
 		'readonly',
 		array (
@@ -243,7 +296,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // legal contact last name
+	$fields_checkout_boxes[] = new PMProRH_Field( // legal contact last name
 		'_user_legal_contact_lastname',
 		'text',
 		array (
@@ -254,7 +307,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // legal contact first name
+	$fields_checkout_boxes[] = new PMProRH_Field( // legal contact first name
 		'_user_legal_contact_firstname',
 		'text',
 		array (
@@ -265,7 +318,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // legal contact occupation
+	$fields_checkout_boxes[] = new PMProRH_Field( // legal contact occupation
 		'_user_legal_contact_occupation',
 		'text',
 		array (
@@ -276,7 +329,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // legal contact phone
+	$fields_checkout_boxes[] = new PMProRH_Field( // legal contact phone
 		'_user_legal_contact_phone',
 		'text',
 		array (
@@ -287,7 +340,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields[] = new PMProRH_Field( // legal contact email
+	$fields_checkout_boxes[] = new PMProRH_Field( // legal contact email
 		'_user_legal_contact_mail',
 		'text',
 		array (
@@ -298,86 +351,255 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-
+	// pilot fields
+	// for individual pilot
+	$fields_checkout_boxes[] = new PMProRH_Field( // pilot section tit
+		'_user_pilot_1',
+		'readonly',
+		array (
+			'label' => __('Pilot','ffd'),
+			'levels' => array(1),
+			'divclass' => 'signup_section_head',
+			'profile' => true
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // pilot section tit
+		'_user_pilot_equal_contact',
+		'checkbox',
+		array (
+			'name' => '_user_pilot_equal_contact',
+			'label' => __('Copy legal contact informations for pilot','ffd'),
+			'levels' => array(1),
+			'profile' => false
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // photo
+		'_user_pilot_1_photo',
+		'file',
+		array (
+			'name' => '_user_pilot_1_photo',
+			'label' => __('Photo','ffd'),
+			'levels' => array(1),
+			'memberslistcsv' => true,
+			'profile' => true,
+			'hint' => __('Profile photo, ID document type. This photo will be used for your membership card.','ffd')
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // pilot last name
+		'_user_pilot_1_lastname',
+		'text',
+		array (
+			'name' => '_user_pilot_1_lastname',
+			'id' => '_user_pilot_1_lastname',
+			'label' => __('Last name','ffd'),
+			'levels' => array(1),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // pilot first name
+		'_user_pilot_1_firstname',
+		'text',
+		array (
+			'name' => '_user_pilot_1_firstname',
+			'id' => '_user_pilot_1_firstname',
+			'label' => __('First name','ffd'),
+			'levels' => array(1),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // pilot ed number
+		'_user_pilot_1_ed',
+		'text',
+		array (
+			'name' => '_user_pilot_1_ed',
+			'label' => __('ED number','ffd'),
+			'levels' => array(1),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // pilot theoretical number
+		'_user_pilot_1_theory',
+		'text',
+		array (
+			'name' => '_user_pilot_1_theory',
+			'label' => __('Theoretical number (ULM, PPL...)','ffd'),
+			'levels' => array(1),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	// pilots fields
+	// for multipilot company, others
+	$fields_checkout_boxes[] = new PMProRH_Field( // enable pilot section
+		'_user_pilot_enable',
+		'checkbox',
+		array (
+			'name' => '_user_pilot_enable',
+			'label' => __('Add pilots data','ffd'),
+			'levels' => array(3,6),
+			'profile' => true
+		)
+	);
 	for ($i = 1; $i <= 2; $i++ ) {
 		$next = $i + 1;
-		$fields[] = new PMProRH_Field( // pilot section tit
+		$levels = array(3,6);
+		$tit = ( $i == 1 ) ? __('Pilot','ffd') : sprintf(__('Pilot %s','ffd'),$i);
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot section tit
 			'_user_pilot_'.$i,
 			'readonly',
 			array (
-				'label' => __('Pilot '.$i,'ffd'),
-				'levels' => array(1,3,4,5,6),
+				'label' => $tit,
+				'levels' => $levels,
 				'divclass' => 'signup_section_head',
-				'profile' => true
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
 			)
 		);
-		$fields[] = new PMProRH_Field( // photo
+		$fields_checkout_boxes[] = new PMProRH_Field( // photo
 			'_user_pilot_'.$i.'_photo',
 			'file',
 			array (
 				'name' => '_user_pilot_'.$i.'_photo',
 				'label' => __('Photo','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => $levels,
 				'memberslistcsv' => true,
 				'profile' => true,
-				'hint' => __('Profile photo, ID document type. This photo will be used for your membership card.','ffd')
+				'hint' => __('Profile photo, ID document type. This photo will be used for your membership card.','ffd'),
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot last name
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot last name
 			'_user_pilot_'.$i.'_lastname',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_lastname',
 				'label' => __('Last name','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => $levels,
 				'memberslistcsv' => true,
-				'profile' => true
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot first name
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot first name
 			'_user_pilot_'.$i.'_firstname',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_firstname',
 				'label' => __('First name','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => $levels,
 				'memberslistcsv' => true,
-				'profile' => true
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot ed number
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot phone
+			'_user_pilot_'.$i.'_phone',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_phone',
+				'label' => __('Phone','ffd'),
+				'levels' => array(3,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
+			)
+		);
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot email
+			'_user_pilot_'.$i.'_mail',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_mail',
+				'label' => __('Email','ffd'),
+				'levels' => array(3,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
+			)
+		);
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot ed number
 			'_user_pilot_'.$i.'_ed',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_ed',
 				'label' => __('ED number','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => $levels,
 				'memberslistcsv' => true,
-				'profile' => true
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot theoretical number
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot theoretical number
 			'_user_pilot_'.$i.'_theory',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_theory',
 				'label' => __('Theoretical number (ULM, PPL...)','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => $levels,
 				'memberslistcsv' => true,
-				'profile' => true
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_enable',
+						'value' => true
+					)
+				)
 			)
 		);
 		if ( $i == 2 ) {
-			$fields[] = new PMProRH_Field( // new pilot button
+			$fields_checkout_boxes[] = new PMProRH_Field( // new pilot button
 				'_user_pilot_'.$i.'_add',
 				'checkbox',
-					array (
-						'name' => '_user_pilot_'.$i.'_add',
-						'label' => __('Add pilot '.$next,'ffd'),
-						'levels' => array(1,3,4,5,6),
-						'memberslistcsv' => false,
-						'profile' => true
+				array (
+					'name' => '_user_pilot_'.$i.'_add',
+					'label' => sprintf(__('Add pilot %s','ffd'),$next),
+					'levels' => array(3,6),
+					'memberslistcsv' => false,
+					'profile' => true,
+					'depends' => array(
+						array(
+							'id' => '_user_pilot_enable',
+							'value' => true
+						)
 					)
+				)
 			);
 		}
 	} // end for
@@ -385,12 +607,12 @@ function ffd_signup_form_extra_fields() {
 	for($i=3; $i <= 50; $i++) {
 		$prev = $i -1;
 		$next = $i + 1;
-		$fields[] = new PMProRH_Field( // pilot section tit
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot section tit
 			'_user_pilot_'.$i,
 			'readonly',
 			array (
-				'label' => __('Pilot '.$i,'ffd'),
-				'levels' => array(1,3,4,5,6),
+				'label' => sprintf(__('Pilot %s','ffd'),$i),
+				'levels' => array(3,6),
 				'divclass' => 'signup_section_head',
 				'profile' => true,
 				'depends' => array(
@@ -401,32 +623,31 @@ function ffd_signup_form_extra_fields() {
 				)
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot photo
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot photo
 			'_user_pilot_'.$i.'_photo',
 			'file',
 			array (
 				'name' => '_user_pilot_'.$i.'_photo',
 				'label' => __('Photo','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => array(3,6),
 				'memberslistcsv' => true,
 				'profile' => true,
-				'hint' => __('Profile photo, ID document type. This photo will be used for your membership card.','ffd')
+				'hint' => __('Profile photo, ID document type. This photo will be used for your membership card.','ffd'),
 				'depends' => array(
 					array(
 						'id' => '_user_pilot_'.$prev.'_add',
 						'value' => true
 					)
 				)
-	
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot last name
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot last name
 			'_user_pilot_'.$i.'_lastname',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_lastname',
 				'label' => __('Last name','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => array(3,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -435,16 +656,15 @@ function ffd_signup_form_extra_fields() {
 						'value' => true
 					)
 				)
-	
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot first name
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot first name
 			'_user_pilot_'.$i.'_firstname',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_firstname',
 				'label' => __('First name','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => array(3,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -453,16 +673,49 @@ function ffd_signup_form_extra_fields() {
 						'value' => true
 					)
 				)
-	
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot ed number
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot phone
+			'_user_pilot_'.$i.'_phone',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_phone',
+				'label' => __('Phone','ffd'),
+				'levels' => array(3,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+			)
+		);
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot email
+			'_user_pilot_'.$i.'_mail',
+			'text',
+			array (
+				'name' => '_user_pilot_'.$i.'_mail',
+				'label' => __('Email','ffd'),
+				'levels' => array(3,6),
+				'memberslistcsv' => true,
+				'profile' => true,
+				'depends' => array(
+					array(
+						'id' => '_user_pilot_'.$prev.'_add',
+						'value' => true
+					)
+				)
+			)
+		);
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot ed number
 			'_user_pilot_'.$i.'_ed',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_ed',
 				'label' => __('ED number','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => array(3,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -471,16 +724,15 @@ function ffd_signup_form_extra_fields() {
 						'value' => true
 					)
 				)
-	
 			)
 		);
-		$fields[] = new PMProRH_Field( // pilot theoretical number
+		$fields_checkout_boxes[] = new PMProRH_Field( // pilot theoretical number
 			'_user_pilot_'.$i.'_theory',
 			'text',
 			array (
 				'name' => '_user_pilot_'.$i.'_theory',
 				'label' => __('Theoretical number (ULM, PPL...)','ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => array(3,6),
 				'memberslistcsv' => true,
 				'profile' => true,
 				'depends' => array(
@@ -489,16 +741,15 @@ function ffd_signup_form_extra_fields() {
 						'value' => true
 					)
 				)
-	
 			)
 		);
-		$fields[] = new PMProRH_Field( // new pilot button
+		$fields_checkout_boxes[] = new PMProRH_Field( // new pilot button
 			'_user_pilot_'.$i.'_add',
 			'checkbox',
 			array (
 				'name' => '_user_pilot_'.$i.'_add',
 				'label' => __('Add pilot '.$next,'ffd'),
-				'levels' => array(1,3,4,5,6),
+				'levels' => array(3,6),
 				'memberslistcsv' => false,
 				'profile' => true,
 				'depends' => array(
@@ -507,13 +758,16 @@ function ffd_signup_form_extra_fields() {
 						'value' => true
 					)
 				)
-	
 			)
 		);
 	} // end for
 
-	foreach ( $fields as $f ) {
+	foreach ( $fields_after_email as $f ) {
 		pmprorh_add_registration_field('after_email',$f);
 	}
+	foreach ( $fields_checkout_boxes as $f ) {
+		pmprorh_add_registration_field('checkout_boxes',$f);
+	}
+
 }
 ?>
