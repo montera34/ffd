@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-02-01 07:44+0100\n"
-"PO-Revision-Date: 2018-02-01 07:46+0100\n"
+"POT-Creation-Date: 2018-02-13 15:37+0100\n"
+"PO-Revision-Date: 2018-02-13 15:37+0100\n"
 "Last-Translator: Alfonso Sánchez Uzábal <skotperez@voragine.net>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -60,11 +60,11 @@ msgstr "Nom de la entreprise"
 msgid "SIRET number"
 msgstr "Numéro SIRET"
 
-#: ffd.php:210 ffd.php:315 ffd.php:406 ffd.php:506 ffd.php:666
+#: ffd.php:210 ffd.php:315 ffd.php:406 ffd.php:478 ffd.php:571
 msgid "First name"
 msgstr "Prénom"
 
-#: ffd.php:221 ffd.php:304 ffd.php:394 ffd.php:489 ffd.php:649
+#: ffd.php:221 ffd.php:304 ffd.php:394 ffd.php:467 ffd.php:560
 msgid "Last name"
 msgstr "Nom"
 
@@ -80,15 +80,15 @@ msgstr "Code postal"
 msgid "City"
 msgstr "Ville"
 
-#: ffd.php:267 ffd.php:337 ffd.php:523 ffd.php:683
+#: ffd.php:267 ffd.php:337 ffd.php:489 ffd.php:582
 msgid "Phone"
 msgstr "Téléphone"
 
-#: ffd.php:280 ffd.php:381 ffd.php:471 ffd.php:631
+#: ffd.php:280 ffd.php:381 ffd.php:455 ffd.php:548
 msgid "Photo"
 msgstr "Photo"
 
-#: ffd.php:284 ffd.php:385 ffd.php:475 ffd.php:635
+#: ffd.php:284 ffd.php:385 ffd.php:459 ffd.php:552
 msgid ""
 "Profile photo, ID document type. This photo will be used for your membership "
 "card."
@@ -102,11 +102,11 @@ msgstr "Représentant"
 msgid "Occupation"
 msgstr "Qualité"
 
-#: ffd.php:348 ffd.php:540 ffd.php:700
+#: ffd.php:348 ffd.php:500 ffd.php:593
 msgid "Email"
 msgstr "Èmail"
 
-#: ffd.php:360 ffd.php:449
+#: ffd.php:360 ffd.php:439
 msgid "Pilot"
 msgstr "Pilote"
 
@@ -114,31 +114,27 @@ msgstr "Pilote"
 msgid "Copy legal contact informations for pilot"
 msgstr "Utiliser les coordonnées du représentant pour le pilote"
 
-#: ffd.php:417 ffd.php:557 ffd.php:717
+#: ffd.php:417 ffd.php:511 ffd.php:604
 msgid "ED number"
 msgstr "Numéro ED"
 
-#: ffd.php:428 ffd.php:574 ffd.php:734
+#: ffd.php:428 ffd.php:522 ffd.php:615
 msgid "Theoretical number (ULM, PPL...)"
 msgstr "Numéro théorique du télépilote (ULM, PPL ...)"
 
-#: ffd.php:441
-msgid "Add pilots data"
-msgstr "Ajouter coordonnés des pilotes"
-
-#: ffd.php:449 ffd.php:614
+#: ffd.php:439 ffd.php:537
 #, php-format
 msgid "Pilot %s"
 msgstr "Pilote %s"
 
-#: ffd.php:592
-#, php-format
-msgid "Add pilot %s"
-msgstr "Ajouter pilote %s"
+#~ msgid "Add pilots data"
+#~ msgstr "Ajouter coordonnés des pilotes"
 
-#: ffd.php:751
-msgid "Add pilot "
-msgstr "Ajouter un pilote "
+#~ msgid "Add pilot %s"
+#~ msgstr "Ajouter pilote %s"
+
+#~ msgid "Add pilot "
+#~ msgstr "Ajouter un pilote "
 
 #~ msgid "First Name"
 #~ msgstr "Prénom"
