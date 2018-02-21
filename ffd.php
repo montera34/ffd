@@ -202,23 +202,23 @@ function ffd_signup_form_extra_fields() {
 	);
 	// first and last name fields for
 	// individual pilot
-	$fields_checkout_boxes[] = new PMProRH_Field( // first name
-		'first_name',
-		'text',
-		array (
-			'name' => 'first_name',
-			'label' => __('First name','ffd'),
-			'levels' => array(2),
-			'memberslistcsv' => true,
-			'profile' => true
-		)
-	);
 	$fields_checkout_boxes[] = new PMProRH_Field( // last name
 		'last_name',
 		'text',
 		array (
 			'name' => 'last_name',
 			'label' => __('Last name','ffd'),
+			'levels' => array(2),
+			'memberslistcsv' => true,
+			'profile' => true
+		)
+	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // first name
+		'first_name',
+		'text',
+		array (
+			'name' => 'first_name',
+			'label' => __('First name','ffd'),
 			'levels' => array(2),
 			'memberslistcsv' => true,
 			'profile' => true
@@ -296,6 +296,18 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
+	$fields_checkout_boxes[] = new PMProRH_Field( // photo
+		'_user_legal_photo',
+		'file',
+		array (
+			'name' => '_user_legal_photo',
+			'label' => __('Photo','ffd'),
+			'levels' => array(1,3,4,5,6),
+			'memberslistcsv' => true,
+			'profile' => true,
+			'hint' => __('Profile photo, ID document type. This photo will be used for your membership card.','ffd')
+		)
+	);
 	$fields_checkout_boxes[] = new PMProRH_Field( // legal contact last name
 		'_user_legal_contact_lastname',
 		'text',
@@ -363,7 +375,7 @@ function ffd_signup_form_extra_fields() {
 			'profile' => true
 		)
 	);
-	$fields_checkout_boxes[] = new PMProRH_Field( // pilot section tit
+	$fields_checkout_boxes[] = new PMProRH_Field( // pilot autofill option
 		'_user_pilot_equal_contact',
 		'checkbox',
 		array (
